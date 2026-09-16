@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Andy — Designer</title>
+  <meta name="description" content="Andy is a designer crafting thoughtful, beautiful digital experiences.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div class="noise"></div>
+
+  <header class="site-header">
+    <a href="#top" class="logo">Andy</a>
+    <nav class="nav">
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#work">Work</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="top">
+
+    <section class="hero">
+      <div class="hero-blob"></div>
+      <div class="hero-content reveal">
+        <p class="eyebrow">Hi, I'm</p>
+        <h1>Andy<span class="dot">.</span></h1>
+        <p class="hero-role">Designer crafting clean, considered, human‑centered work.</p>
+        <div class="hero-actions">
+          <a href="#work" class="btn btn-primary">See my work</a>
+          <a href="#contact" class="btn btn-ghost">Get in touch</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <span>Brand Design</span><span>•</span>
+        <span>UI / UX</span><span>•</span>
+        <span>Art Direction</span><span>•</span>
+        <span>Illustration</span><span>•</span>
+        <span>Product Design</span><span>•</span>
+        <span>Brand Design</span><span>•</span>
+        <span>UI / UX</span><span>•</span>
+        <span>Art Direction</span><span>•</span>
+        <span>Illustration</span><span>•</span>
+        <span>Product Design</span><span>•</span>
+      </div>
+    </section>
+
+    <section id="work" class="section work">
+      <h2 class="section-title reveal">Selected Work</h2>
+      <div class="work-grid">
+        <article class="work-card reveal">
+          <div class="work-thumb thumb-1"></div>
+          <div class="work-info">
+            <h3>Aperture</h3>
+            <p>Brand identity &amp; packaging for a specialty coffee roaster.</p>
+            <span class="tag">Branding</span>
+          </div>
+        </article>
+        <article class="work-card reveal">
+          <div class="work-thumb thumb-2"></div>
+          <div class="work-info">
+            <h3>Northwind App</h3>
+            <p>End-to-end product design for a personal finance app.</p>
+            <span class="tag">UI / UX</span>
+          </div>
+        </article>
+        <article class="work-card reveal">
+          <div class="work-thumb thumb-3"></div>
+          <div class="work-info">
+            <h3>Marigold Studio</h3>
+            <p>Editorial-inspired website for an interior design studio.</p>
+            <span class="tag">Web Design</span>
+          </div>
+        </article>
+        <article class="work-card reveal">
+          <div class="work-thumb thumb-4"></div>
+          <div class="work-info">
+            <h3>Field Notes</h3>
+            <p>Illustration &amp; art direction for a travel publication.</p>
+            <span class="tag">Illustration</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="about" class="section about">
+      <div class="about-grid">
+        <div class="about-photo reveal" aria-hidden="true">
+          <div class="photo-frame"></div>
+        </div>
+        <div class="about-copy reveal">
+          <h2 class="section-title">About Me</h2>
+          <p>
+            I'm Andy, a designer who loves turning fuzzy ideas into clear,
+            beautiful things people enjoy using. My work sits at the
+            intersection of brand, product, and craft — I care as much about
+            how something feels as how it looks.
+          </p>
+          <p>
+            When I'm not designing, you'll find me sketching, hunting for
+            good type, or exploring a new coffee shop for inspiration.
+          </p>
+          <ul class="skills">
+            <li>Brand Identity</li>
+            <li>UI / UX Design</li>
+            <li>Design Systems</li>
+            <li>Illustration</li>
+            <li>Prototyping</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section contact">
+      <div class="contact-card reveal">
+        <h2 class="section-title">Let's work together</h2>
+        <p>Have a project in mind? I'd love to hear about it.</p>
+        <a href="mailto:hello@andy.design" class="btn btn-primary btn-lg">hello@andy.design</a>
+        <div class="socials">
+          <a href="#" aria-label="Dribbble">Dribbble</a>
+          <a href="#" aria-label="Instagram">Instagram</a>
+          <a href="#" aria-label="LinkedIn">LinkedIn</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; <span id="year"></span> Andy. Designed &amp; built with care.</p>
+    <a href="#top" class="back-to-top">Back to top ↑</a>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

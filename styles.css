@@ -40,6 +40,10 @@ button { font: inherit; }
 @keyframes scroll { to { transform: translateX(-50%); } }
 .section { padding: clamp(4rem,10vw,7rem) clamp(1.5rem,6vw,5rem); max-width: 1200px; margin: 0 auto; }
 .section-title { font-family: var(--font-serif); font-size: clamp(2rem,5vw,2.75rem); font-weight: 600; margin-bottom: 2.5rem; }
+.section-heading { max-width: 760px; margin-bottom: 2.5rem; }
+.section-heading .section-title { margin-bottom: .8rem; }
+.section-kicker { margin-bottom: .55rem; color: var(--accent); font-size: .75rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
+.section-intro { max-width: 62ch; color: var(--ink-soft); font-size: 1.05rem; }
 .weather-section { padding-bottom: 0; }
 .weather-card { position: relative; display: grid; grid-template-columns: minmax(0,1fr) auto; align-items: center; gap: 2rem; min-height: 220px; padding: clamp(1.75rem,5vw,3rem); overflow: hidden; border: 1px solid var(--border); border-radius: var(--radius); background: #fff; box-shadow: 0 20px 50px rgba(32,28,26,.07); }
 .weather-card::after { content: ""; position: absolute; width: 220px; height: 220px; right: -65px; top: -85px; border-radius: 50%; background: var(--accent-soft); }
@@ -56,16 +60,24 @@ button { font: inherit; }
 .work-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap: 2rem; }
 .work-card { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; transition: transform .3s ease,box-shadow .3s ease; }
 .work-card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(32,28,26,.1); }
-.work-thumb { aspect-ratio: 4/3; background-size: cover; }
+.work-thumb { display: flex; align-items: flex-end; aspect-ratio: 4/3; padding: 1.5rem; background-size: cover; }
+.work-thumb span { font-family: var(--font-serif); font-size: clamp(3.5rem,8vw,6rem); line-height: .8; color: rgba(32,28,26,.65); }
 .thumb-1 { background: linear-gradient(135deg,#ffb199,#ff5a3c); } .thumb-2 { background: linear-gradient(135deg,#a8d8ff,#5b8def); }
 .thumb-3 { background: linear-gradient(135deg,#d8f5c0,#7cbb5f); } .thumb-4 { background: linear-gradient(135deg,#ffe08a,#ff9d5c); }
 .work-info { padding: 1.5rem; } .work-info h3 { font-family: var(--font-serif); font-size: 1.3rem; margin-bottom: .4rem; }
 .work-info p { color: var(--ink-soft); font-size: .95rem; margin-bottom: .9rem; }
 .tag { display: inline-block; font-size: .75rem; font-weight: 600; padding: .3rem .75rem; border-radius: 999px; background: var(--accent-soft); color: var(--accent); }
+.capabilities { padding-top: 0; }
+.capability-list { border-top: 1px solid var(--border); }
+.capability-item { display: grid; grid-template-columns: 3rem minmax(220px,.75fr) 1.25fr; gap: clamp(1rem,4vw,3rem); align-items: baseline; padding: 1.6rem 0; border-bottom: 1px solid var(--border); }
+.capability-number { color: var(--accent); font-family: var(--font-serif); font-size: .9rem; }
+.capability-item h3 { font-family: var(--font-serif); font-size: clamp(1.15rem,2.5vw,1.45rem); font-weight: 600; line-height: 1.25; }
+.capability-item p { max-width: 58ch; color: var(--ink-soft); }
 .about-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 3.5rem; align-items: center; }
 .photo-frame { aspect-ratio: 1; border-radius: var(--radius); background: linear-gradient(160deg,var(--accent),#ffcf9e); position: relative; }
 .photo-frame::after { content: "AD"; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: var(--font-serif); font-size: 5rem; color: rgba(255,255,255,.85); }
 .about-copy p { color: var(--ink-soft); margin-bottom: 1.25rem; max-width: 55ch; }
+.about-copy .section-kicker { color: var(--accent); margin-bottom: .55rem; }
 .skills { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1.5rem; }
 .skills li { padding: .5rem 1rem; border: 1px solid var(--border); border-radius: 999px; font-size: .85rem; font-weight: 500; }
 .contact-card { text-align: center; background: var(--ink); color: var(--bg); border-radius: var(--radius); padding: clamp(3rem,8vw,5rem) 2rem; }
@@ -82,6 +94,8 @@ button { font: inherit; }
   .nav-toggle { display: flex; } .nav-links { position: absolute; top: 100%; left: 0; right: 0; background: var(--bg); flex-direction: column; gap: 0; border-bottom: 1px solid var(--border); max-height: 0; overflow: hidden; transition: max-height .3s ease; }
   .nav-links.is-open { max-height: 300px; } .nav-links li { padding: 1rem 1.5rem; border-top: 1px solid var(--border); }
   .weather-card { grid-template-columns: 1fr; } .weather-reading { justify-self: start; text-align: left; }
+  .capability-item { grid-template-columns: 2rem 1fr; gap: .35rem 1rem; align-items: start; }
+  .capability-item p { grid-column: 2; }
   .site-footer { flex-direction: column; gap: .75rem; text-align: center; }
 }
 @media (prefers-reduced-motion:reduce) { html { scroll-behavior: auto; } .marquee-track { animation: none; } .reveal { opacity: 1; transform: none; transition: none; } }

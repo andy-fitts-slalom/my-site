@@ -789,7 +789,11 @@ button {
   gap: var(--space-xl);
   padding-block: var(--space-lg);
   border-bottom: 1px solid var(--color-line);
-  transition: background-color 150ms var(--ease-out), padding-inline 200ms var(--ease-out);
+  transition: background-color 240ms var(--ease-out), box-shadow 240ms var(--ease-out);
+}
+
+.capability-item > * {
+  transition: transform 240ms var(--ease-out);
 }
 
 .capability-number {
@@ -990,6 +994,17 @@ button {
   transform: translateY(0);
 }
 
+.capability-item.reveal {
+  transition: opacity var(--motion-slow) var(--ease-out),
+              transform var(--motion-slow) var(--ease-out),
+              background-color 240ms var(--ease-out),
+              box-shadow 240ms var(--ease-out);
+  transition-delay: calc(var(--reveal-order, 0) * var(--motion-stagger)),
+                    calc(var(--reveal-order, 0) * var(--motion-stagger)),
+                    0ms,
+                    0ms;
+}
+
 @media (hover: hover) and (pointer: fine) {
   .work-card:hover {
     z-index: 1;
@@ -998,8 +1013,12 @@ button {
   }
 
   .capability-item:hover {
-    padding-inline: var(--space-md);
     background: var(--color-mint);
+    box-shadow: inset .25rem 0 var(--color-coral);
+  }
+
+  .capability-item:hover > * {
+    transform: translateX(var(--space-md));
   }
 }
 

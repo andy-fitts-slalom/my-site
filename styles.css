@@ -303,75 +303,90 @@ button {
 }
 
 .hero-system {
-  position: relative;
   width: 100%;
   aspect-ratio: 1;
   max-width: 27rem;
   justify-self: end;
   border: 1px solid var(--color-line);
   background-color: var(--color-surface);
-  background-image: linear-gradient(var(--color-line) 1px, transparent 1px), linear-gradient(90deg, var(--color-line) 1px, transparent 1px);
-  background-size: 2rem 2rem;
   box-shadow: var(--shadow-lg);
 }
 
-.system-core,
-.system-node,
-.system-label {
-  position: absolute;
-  z-index: 2;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--color-surface);
+.system-map {
+  display: block;
+  width: 100%;
+  height: 100%;
+  color: var(--color-line);
+}
+
+.system-grid {
+  color: var(--color-line);
+}
+
+.system-label,
+.system-node text,
+.system-core text {
   font-family: var(--font-mono);
 }
 
-.system-core {
-  inset: 35%;
-  border: 1px solid var(--color-ink);
-  background: var(--color-acid);
-  font-size: .75rem;
-  font-weight: 500;
-  line-height: 1.25;
-  text-align: center;
+.system-label {
+  fill: var(--color-muted);
+  font-size: 9px;
+  letter-spacing: .04em;
 }
-
-.system-node {
-  width: 3.25rem;
-  height: 3.25rem;
-  border: 1px solid var(--color-ink);
-  font-size: .75rem;
-}
-
-.system-node-a { left: 10%; top: 14%; background: var(--color-coral-soft); }
-.system-node-b { right: 10%; top: 19%; background: var(--color-blue); }
-.system-node-c { left: 15%; bottom: 12%; background: var(--color-mint); }
-.system-node-d { right: 14%; bottom: 15%; }
 
 .system-line {
-  position: absolute;
-  z-index: 1;
-  width: 36%;
-  height: 1px;
-  background: var(--color-ink);
-  transform-origin: left center;
+  stroke: var(--color-ink);
+  stroke-dasharray: 1;
+  stroke-linecap: square;
+  stroke-width: 1.5;
 }
 
-.system-line-a { left: 22%; top: 28%; transform: rotate(27deg); }
-.system-line-b { left: 52%; top: 48%; transform: rotate(-35deg); }
-.system-line-c { left: 25%; top: 68%; transform: rotate(-28deg); }
-.system-line-d { left: 52%; top: 55%; transform: rotate(35deg); }
-
-.system-label {
-  padding: var(--space-xs) var(--space-sm);
-  color: var(--color-muted);
-  font-size: .625rem;
-  text-transform: uppercase;
+.system-node,
+.system-core {
+  transform-box: fill-box;
+  transform-origin: center;
 }
 
-.system-label-top { top: var(--space-sm); right: var(--space-sm); }
-.system-label-bottom { bottom: var(--space-sm); left: var(--space-sm); }
+.system-node rect,
+.system-core rect {
+  stroke: var(--color-ink);
+  stroke-width: 1.5;
+}
+
+.system-node-a rect { fill: var(--color-coral-soft); }
+.system-node-b rect { fill: var(--color-blue); }
+.system-node-c rect { fill: var(--color-mint); }
+.system-node-d rect { fill: var(--color-surface); }
+
+.system-node-title {
+  fill: var(--color-ink);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.system-node-meta {
+  fill: var(--color-muted);
+  font-size: 7px;
+  letter-spacing: .08em;
+}
+
+.system-core rect {
+  fill: var(--color-acid);
+}
+
+.system-core text {
+  fill: var(--color-ink);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: .04em;
+}
+
+.system-core path {
+  fill: none;
+  stroke: var(--color-ink);
+  stroke-width: 1.5;
+}
 
 .motion-ready .system-core {
   animation: system-core-enter var(--motion-medium) var(--ease-out) 100ms both;
@@ -400,8 +415,8 @@ button {
 }
 
 @keyframes system-line-draw {
-  from { opacity: 0; scale: 0 1; }
-  to { opacity: 1; scale: 1 1; }
+  from { opacity: 0; stroke-dashoffset: 1; }
+  to { opacity: 1; stroke-dashoffset: 0; }
 }
 
 @keyframes system-node-enter {

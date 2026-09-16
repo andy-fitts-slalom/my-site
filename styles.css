@@ -34,6 +34,13 @@
   --motion-medium: 420ms;
   --motion-slow: 620ms;
   --motion-stagger: 70ms;
+  --hero-font-family: "Archivo", sans-serif;
+  --hero-font-weight: 700;
+  --hero-scale: .75;
+  --hero-leading: .8;
+  --hero-tracking: -.045em;
+  --hero-indent: .46em;
+  --hero-dot-scale: .9em;
   --shadow-sm: 0 1px 2px oklch(22% .025 165 / .08);
   --shadow-lg: 0 24px 64px oklch(22% .025 165 / .12);
   --content-width: 75rem;
@@ -220,11 +227,11 @@ button {
   flex-direction: column;
   align-items: flex-start;
   margin-left: -.055em;
-  font-family: var(--font-display);
-  font-size: clamp(4.75rem, 11vw, 9rem);
-  font-weight: 700;
-  letter-spacing: -.06em;
-  line-height: .82;
+  font-family: var(--hero-font-family);
+  font-size: clamp(calc(4.75rem * var(--hero-scale)), calc(11vw * var(--hero-scale)), calc(9rem * var(--hero-scale)));
+  font-weight: var(--hero-font-weight);
+  letter-spacing: var(--hero-tracking);
+  line-height: var(--hero-leading);
 }
 
 .name-line {
@@ -233,14 +240,14 @@ button {
 }
 
 .name-last {
-  margin-left: .28em;
+  margin-left: var(--hero-indent);
 }
 
 .hero .dot {
   display: inline-block;
   margin-left: .035em;
   color: var(--color-coral);
-  font-size: .62em;
+  font-size: var(--hero-dot-scale);
   transform: translateY(.08em);
 }
 
@@ -1045,7 +1052,7 @@ button {
   }
 
   .hero h1 {
-    font-size: clamp(4.75rem, 13vw, 7.5rem);
+    font-size: clamp(calc(4.75rem * var(--hero-scale)), calc(13vw * var(--hero-scale)), calc(7.5rem * var(--hero-scale)));
   }
 
   .about-grid {
@@ -1138,7 +1145,7 @@ button {
   }
 
   .hero h1 {
-    font-size: clamp(4.25rem, 25vw, 6.5rem);
+    font-size: clamp(calc(4.25rem * var(--hero-scale)), calc(25vw * var(--hero-scale)), calc(6.5rem * var(--hero-scale)));
   }
 
   .hero-system {

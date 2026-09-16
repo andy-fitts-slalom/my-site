@@ -7,6 +7,94 @@ const MOTION = {
   easing: "cubic-bezier(.16, 1, .3, 1)"
 };
 
+const TYPOGRAPHY_LAB = {
+  dialkitScript: "https://unpkg.com/dialkit@2.0.0/dist/vanilla/browser.global.js",
+  dialkitStyles: "https://unpkg.com/dialkit@2.0.0/dist/vanilla/styles.css",
+  fontStyles: "https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap",
+  families: {
+    manrope: '"Manrope", sans-serif',
+    spaceGrotesk: '"Space Grotesk", sans-serif',
+    archivo: '"Archivo", sans-serif',
+    ibmPlexSans: '"IBM Plex Sans", sans-serif'
+  }
+};
+
+const loadStylesheet = (href) => new Promise((resolve, reject) => {
+  const link = document.createElement("link");
+  link.rel = "stylesheet";
+  link.href = href;
+  link.addEventListener("load", resolve, { once: true });
+  link.addEventListener("error", reject, { once: true });
+  document.head.append(link);
+});
+
+const loadScript = (src) => new Promise((resolve, reject) => {
+  const script = document.createElement("script");
+  script.src = src;
+  script.addEventListener("load", resolve, { once: true });
+  script.addEventListener("error", reject, { once: true });
+  document.head.append(script);
+});
+
+const mountTypographyLab = async () => {
+  await Promise.all([
+    loadStylesheet(TYPOGRAPHY_LAB.dialkitStyles),
+    loadStylesheet(TYPOGRAPHY_LAB.fontStyles),
+    loadScript(TYPOGRAPHY_LAB.dialkitScript)
+  ]);
+
+  const dialRoot = window.DialKit.createDialRoot({
+    position: "bottom-right",
+    theme: "light",
+    defaultOpen: true,
+    productionEnabled: true
+  });
+
+  let typographyDial;
+  typographyDial = window.DialKit.createDialKit("Hero typography", {
+    family: {
+      type: "select",
+      options: [
+        { value: "manrope", label: "Manrope" },
+        { value: "spaceGrotesk", label: "Space Grotesk" },
+        { value: "archivo", label: "Archivo" },
+        { value: "ibmPlexSans", label: "IBM Plex Sans" }
+      ],
+      default: "archivo"
+    },
+    weight: [700, 400, 700, 100],
+    scale: [.75, .75, 1.15, .01],
+    leading: [.8, .7, 1, .01],
+    tracking: [-.045, -.1, .02, .005],
+    secondLineIndent: [.46, 0, .6, .01],
+    periodScale: [.9, .35, .9, .01],
+    reset: { type: "action", label: "Reset typography" }
+  }, {
+    id: "andy-hero-typography",
+    persist: { key: "andy:hero-typography", storage: "localStorage", presets: true },
+    onAction: (path) => {
+      if (path === "reset") typographyDial.resetValues();
+    }
+  });
+
+  typographyDial.subscribe((values) => {
+    const root = document.documentElement.style;
+    root.setProperty("--hero-font-family", TYPOGRAPHY_LAB.families[values.family]);
+    root.setProperty("--hero-font-weight", values.weight);
+    root.setProperty("--hero-scale", values.scale);
+    root.setProperty("--hero-leading", values.leading);
+    root.setProperty("--hero-tracking", `${values.tracking}em`);
+    root.setProperty("--hero-indent", `${values.secondLineIndent}em`);
+    root.setProperty("--hero-dot-scale", `${values.periodScale}em`);
+  });
+
+  window.typographyLab = { dialRoot, typographyDial };
+};
+
+if (new URLSearchParams(window.location.search).get("typographyLab") === "1") {
+  mountTypographyLab().catch((error) => console.error("Typography lab failed to load", error));
+}
+
 if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
   requestAnimationFrame(() => document.body.classList.add("motion-ready"));
 }

@@ -474,58 +474,81 @@ button {
   font-size: 1.125rem;
 }
 
-.weather-section {
-  padding-bottom: 0;
-}
-
 .weather-card {
   position: relative;
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
-  min-height: 14rem;
+  width: 100%;
+  max-width: 26rem;
+  min-height: 5.5rem;
   overflow: hidden;
-  border: 1px solid var(--color-ink);
+  border: 1px solid var(--color-line);
   border-radius: var(--radius-md);
   background: var(--color-surface);
 }
 
 .weather-card::before {
   position: absolute;
-  inset: 0 0 0 auto;
-  width: 36%;
-  background-color: var(--color-blue);
-  background-image: radial-gradient(var(--color-ink) 1px, transparent 1px);
-  background-size: 1rem 1rem;
+  inset: 0 auto 0 0;
+  width: .25rem;
+  background: var(--color-coral);
   content: "";
 }
 
 .weather-copy {
   z-index: 1;
-  padding: var(--space-2xl);
+  padding: var(--space-md) var(--space-lg);
 }
 
 .weather-kicker {
-  margin-bottom: var(--space-md);
+  margin-bottom: var(--space-xs);
   color: var(--color-coral);
+  font-size: .625rem;
 }
 
 .weather-card h2 {
-  margin-bottom: var(--space-sm);
+  margin-bottom: .125rem;
   font-family: var(--font-display);
-  font-size: clamp(2rem, 4vw, 3rem);
+  font-size: 1rem;
   font-weight: 700;
-  letter-spacing: -.04em;
-  line-height: 1;
+  letter-spacing: -.02em;
+  line-height: 1.2;
 }
 
 .weather-status {
-  max-width: 42ch;
   color: var(--color-muted);
+  font-size: .75rem;
 }
 
 .weather-button {
-  margin-top: var(--space-lg);
+  z-index: 1;
+  min-width: 4.5rem;
+  min-height: 2.75rem;
+  margin-right: var(--space-md);
+  padding-inline: var(--space-md);
+  border: 1px solid var(--color-ink);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--color-ink);
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: .75rem;
+  transition: color var(--motion-fast) var(--ease-out), background-color var(--motion-fast) var(--ease-out), transform var(--motion-fast) var(--ease-out);
+}
+
+.weather-button:hover {
+  background: var(--color-ink);
+  color: var(--color-paper);
+}
+
+.weather-button:active {
+  transform: scale(.97);
+}
+
+.weather-button:disabled {
+  cursor: wait;
+  opacity: .6;
 }
 
 .weather-reading {
@@ -533,10 +556,8 @@ button {
   display: none;
   grid-template-columns: auto auto;
   align-items: center;
-  min-width: 18rem;
-  gap: var(--space-md);
-  padding: var(--space-2xl);
-  text-align: right;
+  gap: var(--space-sm);
+  padding: var(--space-md) var(--space-lg) var(--space-md) 0;
 }
 
 .weather-reading.is-visible {
@@ -544,18 +565,18 @@ button {
 }
 
 .weather-card.is-resolved::before {
-  background-color: var(--color-mint);
+  background: oklch(58% .12 165);
 }
 
 .weather-emoji {
-  font-size: clamp(3rem, 7vw, 5rem);
+  font-size: 2rem;
   line-height: 1;
 }
 
 .weather-temp {
   display: block;
   font-family: var(--font-mono);
-  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-size: 1.25rem;
   font-variant-numeric: tabular-nums;
   font-weight: 500;
   letter-spacing: -.05em;
@@ -564,7 +585,7 @@ button {
 
 .weather-condition {
   display: block;
-  margin-top: var(--space-sm);
+  margin-top: .125rem;
   font-family: var(--font-mono);
   font-size: .75rem;
 }
@@ -910,15 +931,26 @@ button {
 }
 
 .site-footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: minmax(0, auto) 1fr;
+  align-items: end;
+  gap: var(--space-xl);
   width: min(100% - 3rem, var(--content-width));
-  min-height: 6rem;
+  min-height: 9rem;
   margin-inline: auto;
+  padding-block: var(--space-xl);
+  border-top: 1px solid var(--color-line);
   color: var(--color-muted);
   font-family: var(--font-mono);
   font-size: .75rem;
+}
+
+.footer-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-lg);
+  padding-bottom: var(--space-sm);
 }
 
 .back-to-top {
@@ -1063,27 +1095,6 @@ button {
     width: 100%;
   }
 
-  .weather-card {
-    grid-template-columns: 1fr;
-  }
-
-  .weather-card::before {
-    inset: auto 0 0;
-    width: 100%;
-    height: 34%;
-  }
-
-  .weather-copy,
-  .weather-reading {
-    padding: var(--space-xl);
-  }
-
-  .weather-reading {
-    justify-self: start;
-    min-width: 0;
-    text-align: left;
-  }
-
   .work-thumb {
     min-height: 13rem;
   }
@@ -1106,10 +1117,14 @@ button {
   }
 
   .site-footer {
-    flex-direction: column;
+    grid-template-columns: 1fr;
     align-items: flex-start;
-    justify-content: center;
-    gap: var(--space-sm);
+    gap: var(--space-lg);
+  }
+
+  .footer-meta {
+    width: 100%;
+    align-items: flex-start;
   }
 }
 

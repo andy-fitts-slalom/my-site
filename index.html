@@ -72,24 +72,6 @@
       </div>
     </section>
 
-    <section class="section weather-section" aria-labelledby="weatherTitle">
-      <div class="weather-card reveal">
-        <div class="weather-copy">
-          <p class="weather-kicker">Right where you are</p>
-          <h2 id="weatherTitle">Local weather</h2>
-          <p class="weather-status" id="weatherStatus" aria-live="polite">Share your location to see the weather outside your window.</p>
-          <button class="btn btn-primary weather-button" id="weatherButton" type="button">Use my location</button>
-        </div>
-        <div class="weather-reading" id="weatherReading" aria-hidden="true">
-          <span class="weather-emoji" id="weatherEmoji" role="img" aria-label=""></span>
-          <div>
-            <strong class="weather-temp" id="weatherTemp"></strong>
-            <span class="weather-condition" id="weatherCondition"></span>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <section id="practice" class="section work">
       <div class="section-heading reveal">
         <p class="section-kicker">Areas of practice</p>
@@ -230,8 +212,25 @@
   </main>
 
   <footer class="site-footer">
-    <p>&copy; <span id="year"></span> Andy. Designed &amp; built with care.</p>
-    <a href="#top" class="back-to-top">Back to top ↑</a>
+    <aside class="weather-card reveal" aria-labelledby="weatherTitle">
+      <div class="weather-copy">
+        <p class="weather-kicker">Local utility</p>
+        <h2 id="weatherTitle">Weather near you</h2>
+        <p class="weather-status" id="weatherStatus" aria-live="polite">Uses your browser location once.</p>
+      </div>
+      <button class="weather-button" id="weatherButton" type="button">Check</button>
+      <div class="weather-reading" id="weatherReading" aria-hidden="true">
+        <span class="weather-emoji" id="weatherEmoji" role="img" aria-label=""></span>
+        <div>
+          <strong class="weather-temp" id="weatherTemp"></strong>
+          <span class="weather-condition" id="weatherCondition"></span>
+        </div>
+      </div>
+    </aside>
+    <div class="footer-meta">
+      <p>&copy; <span id="year"></span> Andy. Designed &amp; built with care.</p>
+      <a href="#top" class="back-to-top">Back to top ↑</a>
+    </div>
   </footer>
 
   <script src="app.js" defer></script>

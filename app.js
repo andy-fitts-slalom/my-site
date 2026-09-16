@@ -1,5 +1,16 @@
 document.getElementById("year").textContent = new Date().getFullYear();
 
+const MOTION = {
+  weatherDuration: 520,
+  weatherOffset: 12,
+  weatherScale: 0.94,
+  easing: "cubic-bezier(.16, 1, .3, 1)"
+};
+
+if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  requestAnimationFrame(() => document.body.classList.add("motion-ready"));
+}
+
 const navToggle = document.getElementById("navToggle");
 const navLinks = document.getElementById("navLinks");
 navToggle.addEventListener("click", () => {
@@ -13,7 +24,34 @@ navLinks.querySelectorAll("a").forEach((link) => {
   });
 });
 
+const sectionLinks = [...navLinks.querySelectorAll("a[href^='#']")];
+const trackedSections = sectionLinks
+  .map((link) => document.querySelector(link.getAttribute("href")))
+  .filter(Boolean);
+
+if ("IntersectionObserver" in window) {
+  const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      sectionLinks.forEach((link) => {
+        if (link.getAttribute("href") === `#${entry.target.id}`) {
+          link.setAttribute("aria-current", "location");
+        } else {
+          link.removeAttribute("aria-current");
+        }
+      });
+    });
+  }, { rootMargin: "-20% 0px -65% 0px" });
+  trackedSections.forEach((section) => sectionObserver.observe(section));
+}
+
 const revealEls = document.querySelectorAll(".reveal");
+document.querySelectorAll(".work-grid, .capability-list").forEach((group) => {
+  group.querySelectorAll(".reveal").forEach((element, index) => {
+    element.style.setProperty("--reveal-order", Math.min(index, 5));
+  });
+});
+
 if ("IntersectionObserver" in window) {
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
@@ -85,7 +123,18 @@ weatherButton.addEventListener("click", () => {
       weatherStatus.textContent = "Current conditions near you";
       weatherReading.classList.add("is-visible");
       weatherReading.setAttribute("aria-hidden", "false");
+          weatherReading.closest(".weather-card").classList.add("is-resolved");
       weatherButton.hidden = true;
+          if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+            weatherReading.animate([
+              { opacity: 0, transform: `translateY(${MOTION.weatherOffset}px) scale(${MOTION.weatherScale})` },
+              { opacity: 1, transform: "translateY(0) scale(1)" }
+            ], {
+              duration: MOTION.weatherDuration,
+              easing: MOTION.easing,
+              fill: "both"
+            });
+          }
     } catch (error) {
       showWeatherError("The weather could not be loaded right now.");
     }

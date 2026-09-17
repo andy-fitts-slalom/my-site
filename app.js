@@ -1,5 +1,11 @@
 document.getElementById("year").textContent = new Date().getFullYear();
 
+const contactPortrait = document.querySelector(".contact-portrait");
+const contactPortraitImage = contactPortrait?.querySelector("img");
+contactPortraitImage?.addEventListener("error", () => {
+  contactPortrait.hidden = true;
+});
+
 const MOTION = {
   weatherDuration: 520,
   weatherOffset: 12,

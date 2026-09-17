@@ -335,6 +335,13 @@ button {
   box-shadow: var(--shadow-lg);
 }
 
+.contact-portrait img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .system-map {
   display: block;
   width: 100%;
@@ -880,6 +887,10 @@ button {
   letter-spacing: -.06em;
 }
 
+.about-photo {
+  position: relative;
+}
+
 .about-copy .section-title {
   margin-bottom: var(--space-xl);
 }
@@ -913,6 +924,18 @@ button {
   background: var(--color-ink);
   color: var(--color-paper);
   text-align: center;
+}
+
+.contact-portrait {
+  position: relative;
+  z-index: 1;
+  width: 6rem;
+  aspect-ratio: 1;
+  margin: 0 auto var(--space-xl);
+  overflow: hidden;
+  border: 1px solid var(--color-paper);
+  border-radius: 50%;
+  box-shadow: 0 0 0 .5rem oklch(97% .012 105 / .08);
 }
 
 .contact-card::before,
@@ -949,6 +972,19 @@ button {
 .contact-card .btn-primary:hover {
   background: var(--color-coral);
   color: var(--color-paper);
+}
+
+.linkedin-cta::after {
+  content: "↗";
+  margin-left: var(--space-sm);
+  font-family: var(--font-mono);
+  font-size: .8em;
+  transform: translateY(-.08em);
+  transition: transform var(--motion-fast) var(--ease-out);
+}
+
+.linkedin-cta:hover::after {
+  transform: translate(.18rem, -.18rem);
 }
 
 .socials {
